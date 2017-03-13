@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/percolation/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/stack_and_queue/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/percolation/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/stack_and_queue/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/collinear/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/collinear/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/percolation/target" />
+      <excludeFolder url="file://$MODULE_DIR$/percolation/test" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="algs4" level="project" />
+  </component>
+</module>
