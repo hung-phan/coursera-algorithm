@@ -17,7 +17,13 @@ public class Board {
     private int[][] blocks;
 
     public Board(int[][] blocks) {
-        this.blocks = blocks.clone();
+        int[][] newBlocks = new int[blocks.length][];
+
+        for (int i = 0; i < newBlocks.length; i++) {
+            newBlocks[i] = blocks[i].clone();
+        }
+
+        this.blocks = newBlocks;
     }
 
     private Board createNewBoard(int i1, int j1, int i2, int j2) {
