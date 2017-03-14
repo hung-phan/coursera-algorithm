@@ -9,6 +9,9 @@
       <sourceFolder url="file://$MODULE_DIR$/stack_and_queue/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/collinear/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/collinear/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/8puzzle/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/8puzzle/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/a_search_algorithm/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/percolation/target" />
       <excludeFolder url="file://$MODULE_DIR$/percolation/test" />
     </content>
