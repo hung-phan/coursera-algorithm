@@ -80,7 +80,4 @@ public class PointSET {
 
         return nearestPoint;
     }
-
-    public static void main(String[] args) {
-    }
 }
