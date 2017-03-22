@@ -205,7 +205,7 @@ public class KdTree {
         return nearestPoint;
     }
 
-    public void nearestNeighborSearch(Node<Point2D> node, RectHV container) {
+    private void nearestNeighborSearch(Node<Point2D> node, RectHV container) {
         if (node != null) {
             Point2D point2D = node.value;
 
