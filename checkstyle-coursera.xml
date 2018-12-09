@@ -76,13 +76,13 @@
             <property name="tokens" value="LITERAL_DO"/>
         </module>
 
-<!-- 
+<!--
         <module name="EmptyBlock">
             <property name="option" value="text"/>
             <message key="block.noStmt" value="A block must have at least one statement."/>
         </module>
 
-        <module name="LeftCurly"/> 
+        <module name="LeftCurly"/>
         <module name="RightCurly"/>
 -->
 
@@ -157,11 +157,11 @@
         </module>
 
         <module name="SimplifyBooleanExpression">
-            <message key="simplify.expression" value="Boolean expression can be simplified, e.g., use ''if (!isEmpty)'' instead of ''if (isEmpty == false)''."/>
+            <message key="simplify.expression" value="Boolean expression can be simplified, e.digraph., use ''if (!isEmpty)'' instead of ''if (isEmpty == false)''."/>
         </module>
 
         <module name="SimplifyBooleanReturn">
-            <message key="simplify.boolreturn" value="Conditional logic can be removed in return statement, e.g., use ''return x >= 0'' instead of ''if (x >= 0) return true; else return false;''."/>
+            <message key="simplify.boolreturn" value="Conditional logic can be removed in return statement, e.digraph., use ''return x >= 0'' instead of ''if (x >= 0) return true; else return false;''."/>
         </module>
 
         <module name="StringLiteralEquality">
@@ -386,7 +386,7 @@
         </module>
 
         <module name="ArrayTypeStyle">
-            <message key="array.type.style" value="The square brackets must appear as part of the type at the beginning of the declaration, e.g., ''boolean[][] isOpen;''."/>
+            <message key="array.type.style" value="The square brackets must appear as part of the type at the beginning of the declaration, e.digraph., ''boolean[][] isOpen;''."/>
         </module>
 
         <module name="OuterTypeFilename">
@@ -451,7 +451,7 @@
         <module name="LocalFinalVariableName">
             <property name="format" value="^([a-z][a-zA-Z0-9]*|^[A-Z][A-Z_0-9]*)$"/>
             <message key="name.invalidPattern" value="The local final variable ''{0}'' must start with a lowercase letter and use camelCase (or be ALL_UPPERCASE if it is a constant)."/>
-        </module>  
+        </module>
 
         <!-- local variaables, allow camelCase or ALL_UPPERCASE of two or more characters -->
         <module name="LocalVariableName">
@@ -588,7 +588,7 @@
            <!-- removed PLUS, MINUS, STAR, DIV -->
            <!-- removed GENERIC_START, GENERIC_END -->
            <property name="tokens"
-            value="ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, 
+            value="ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR,
                    BSR_ASSIGN, BXOR, BXOR_ASSIGN, COLON,  DIV_ASSIGN,
                    EQUAL, GE, GT, LAND, LCURLY, LE, LITERAL_ASSERT,
                    LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY,
