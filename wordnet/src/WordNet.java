@@ -18,6 +18,9 @@ public class WordNet {
     public WordNet(String synsets, String hypernyms) {
         this.idToNoun = new HashMap<>();
         this.nounToId = new HashMap<>();
+
+        readSynets(synsets);
+        readHypernyms(hypernyms);
     }
 
     // do unit testing of this class
