@@ -1,5 +1,8 @@
-import com.sun.tools.javac.util.Pair;
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
+import edu.princeton.cs.algs4.Digraph;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 public class SAP {
     private Digraph digraph;
@@ -49,7 +52,7 @@ public class SAP {
         return new BreadthFirstDirectedPaths(digraph, i);
     }
 
-    private Pair<Integer, Integer> getShortestPath(BreadthFirstDirectedPaths bfsv, BreadthFirstDirectedPaths bfsw) {
+    private int[] getShortestPath(BreadthFirstDirectedPaths bfsv, BreadthFirstDirectedPaths bfsw) {
         int ancestral = -1;
         int shortestLength = Integer.MAX_VALUE;
 
@@ -68,34 +71,34 @@ public class SAP {
             shortestLength = -1;
         }
 
-        return new Pair<>(ancestral, shortestLength);
+        return new int[]{ancestral, shortestLength};
     }
 
     // length of shortest ancestral path between v and w; -1 if no such path
     public int length(int v, int w) {
-        Pair<Integer, Integer> result = getShortestPath(buildBFS(v), buildBFS(w));
+        int[] result = getShortestPath(buildBFS(v), buildBFS(w));
 
-        return result.snd;
+        return result[1];
     }
 
     // a common ancestor of v and w that participates in a shortest ancestral path; -1 if no such path
     public int ancestor(int v, int w) {
-        Pair<Integer, Integer> result = getShortestPath(buildBFS(v), buildBFS(w));
+        int[] result = getShortestPath(buildBFS(v), buildBFS(w));
 
-        return result.fst;
+        return result[0];
     }
 
     // length of shortest ancestral path between any vertex in v and any vertex in w; -1 if no such path
     public int length(Iterable<Integer> v, Iterable<Integer> w) {
-        Pair<Integer, Integer> result = getShortestPath(buildBFS(v), buildBFS(w));
+        int[] result = getShortestPath(buildBFS(v), buildBFS(w));
 
-        return result.snd;
+        return result[1];
     }
 
     // a common ancestor that participates in shortest ancestral path; -1 if no such path
     public int ancestor(Iterable<Integer> v, Iterable<Integer> w) {
-        Pair<Integer, Integer> result = getShortestPath(buildBFS(v), buildBFS(w));
+        int[] result = getShortestPath(buildBFS(v), buildBFS(w));
 
-        return result.fst;
+        return result[0];
     }
 }
