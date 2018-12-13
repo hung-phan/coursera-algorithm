@@ -1,11 +1,11 @@
 import edu.princeton.cs.algs4.Picture;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Arrays;
 
 public class SeamCarver {
     private static final int BORDER_ENERGY = 1000;
-    private Picture picture;
+    private final Picture picture;
 
     private int width;
     private int height;
@@ -72,7 +72,7 @@ public class SeamCarver {
         }
 
         int minRow = 0;
-        double minDist = Double.MAX_VALUE;
+        double minDist = Double.POSITIVE_INFINITY;
 
         for (int row = 0; row < height; row++) {
             if (minDist > distTo[row][width - 1]) {
@@ -102,7 +102,7 @@ public class SeamCarver {
         }
 
         int minCol = 0;
-        double minDist = Double.MAX_VALUE;
+        double minDist = Double.POSITIVE_INFINITY;
 
         for (int col = 0; col < width; col++) {
             if (minDist > distTo[height - 1][col]) {
@@ -211,7 +211,7 @@ public class SeamCarver {
 
     private void resetDistTo(double[][] distTo) {
         for (double[] row : distTo) {
-            Arrays.fill(row, Double.MAX_VALUE);
+            Arrays.fill(row, Double.POSITIVE_INFINITY);
         }
     }
 
