@@ -5,16 +5,21 @@ import java.util.Arrays;
 
 public class SeamCarver {
     private static final int BORDER_ENERGY = 1000;
-    private final Picture picture;
-
+    private int[][] colors;
     private int width;
     private int height;
 
     // create a seam carver object based on the given picture
     public SeamCarver(Picture picture) {
-        this.picture = new Picture(picture);
-        this.width = this.picture.width();
-        this.height = this.picture.height();
+        width = picture.width();
+        height = picture.height();
+        colors = new int[height][width];
+
+        for (int col = 0; col < width; col++) {
+            for (int row = 0; row < height; row++) {
+                colors[row][col] = picture.get(col, row).getRGB();
+            }
+        }
     }
 
     private static void validateSeam(int[] seam, int index, int high) {
@@ -25,7 +30,15 @@ public class SeamCarver {
 
     // current picture
     public Picture picture() {
-        return picture;
+        Picture newPicture = new Picture(width, height);
+
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                newPicture.set(col, row, new Color(colors[row][col]));
+            }
+        }
+
+        return newPicture;
     }
 
     // width of current picture
@@ -124,11 +137,11 @@ public class SeamCarver {
             throw new IllegalArgumentException("Height of the picture is less than 1");
         }
 
-        for (int row = 1; row < width; row++) {
-            validateSeam(seam, row, height);
+        for (int col = 0; col < width; col++) {
+            validateSeam(seam, col, width);
 
-            for (int col = seam[row]; col < height - 1; col++) {
-                picture.set(row, col, picture.get(row, col + 1));
+            for (int row = seam[col]; row < height - 1; row++) {
+                colors[row][col] = colors[row + 1][col];
             }
         }
 
@@ -145,11 +158,11 @@ public class SeamCarver {
             throw new IllegalArgumentException("Weight of the picture is less than 1");
         }
 
-        for (int row = 1; row < height; row++) {
+        for (int row = 0; row < height; row++) {
             validateSeam(seam, row, width);
 
             for (int col = seam[row]; col < width - 1; col++) {
-                picture.set(col, row, picture.get(col + 1, row));
+                colors[row][col] = colors[row][col + 1];
             }
         }
 
@@ -216,8 +229,8 @@ public class SeamCarver {
     }
 
     private int gradientSquare(int x1, int y1, int x2, int y2) {
-        Color color1 = picture.get(x1, y1);
-        Color color2 = picture.get(x2, y2);
+        Color color1 = new Color(colors[y1][x1]);
+        Color color2 = new Color(colors[y2][x2]);
         int red = color1.getRed() - color2.getRed();
         int green = color1.getGreen() - color2.getGreen();
         int blue = color1.getBlue() - color2.getBlue();
