@@ -54,36 +54,6 @@ public class SeamCarver {
         return Math.sqrt(deltaX + deltaY);
     }
 
-    // sequence of indices for horizontal seam
-    public int[] findHorizontalSeam() {
-        int[][] edgeTo = new int[height][width];
-        double[][] distTo = new double[height][width];
-
-        resetDistTo(distTo);
-
-        for (int row = 0; row < height; row++) {
-            distTo[row][0] = BORDER_ENERGY;
-        }
-
-        for (int row = 0; row < height; row++) {
-            for (int col = 0; col < width - 1; col++) {
-                relax(Orientation.HORIZONTAL, row, col, edgeTo, distTo);
-            }
-        }
-
-        int minRow = 0;
-        double minDist = Double.POSITIVE_INFINITY;
-
-        for (int row = 0; row < height; row++) {
-            if (minDist > distTo[row][width - 1]) {
-                minRow = row;
-                minDist = distTo[row][width - 1];
-            }
-        }
-
-        return trace(Orientation.HORIZONTAL, edgeTo, minRow);
-    }
-
     // sequence of indices for vertical seam
     public int[] findVerticalSeam() {
         int[][] edgeTo = new int[height][width];
@@ -112,6 +82,36 @@ public class SeamCarver {
         }
 
         return trace(Orientation.VERTICAL, edgeTo, minCol);
+    }
+
+    // sequence of indices for horizontal seam
+    public int[] findHorizontalSeam() {
+        int[][] edgeTo = new int[height][width];
+        double[][] distTo = new double[height][width];
+
+        resetDistTo(distTo);
+
+        for (int row = 0; row < height; row++) {
+            distTo[row][0] = BORDER_ENERGY;
+        }
+
+        for (int col = 0; col < width - 1; col++) {
+            for (int row = 0; row < height; row++) {
+                relax(Orientation.HORIZONTAL, row, col, edgeTo, distTo);
+           }
+        }
+
+        int minRow = 0;
+        double minDist = Double.POSITIVE_INFINITY;
+
+        for (int row = 0; row < height; row++) {
+            if (minDist > distTo[row][width - 1]) {
+                minRow = row;
+                minDist = distTo[row][width - 1];
+            }
+        }
+
+        return trace(Orientation.HORIZONTAL, edgeTo, minRow);
     }
 
     // remove horizontal seam from current picture
