@@ -143,8 +143,8 @@ public class BaseballElimination {
             return result;
         }
 
-        FlowNetwork network = new FlowNetwork(numOfVertices);
         int totalGames = 0;
+        FlowNetwork network = new FlowNetwork(numOfVertices);
 
         for (int team1 = 0, offset = 0; team1 < numOfTeams; team1++) {
             for (int team2 = team1 + 1; team2 < numOfTeams; team2++, offset++) {
@@ -154,9 +154,7 @@ public class BaseballElimination {
                 totalGames += against[team1][team2];
             }
 
-            int capacity = wins(team) + remaining(team) - wins[team1];
-
-            network.addEdge(new FlowEdge(numOfGames + team1, sink, Math.max(capacity, 0)));
+            network.addEdge(new FlowEdge(numOfGames + team1, sink, wins(team) + remaining(team) - wins[team1]));
         }
 
         FordFulkerson ff = new FordFulkerson(network, src, sink);
