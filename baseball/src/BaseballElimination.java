@@ -126,6 +126,10 @@ public class BaseballElimination {
 
     // subset R of teams that eliminates given team; null if not eliminated
     public Iterable<String> certificateOfElimination(String team) {
+        if (!nameToId.containsKey(team)) {
+            throw new IllegalArgumentException();
+        }
+
         LinkedList<String> result = new LinkedList<>();
         int teamX = nameToId.get(team);
 
