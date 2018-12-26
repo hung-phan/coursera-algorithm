@@ -17,10 +17,10 @@ public class NFA {
     public static void main(String[] args) {
         NFA nfa = new NFA("(AA|BB)*C");
 
-        System.out.println(nfa.regconize("AABBAABBAAAAC"));
+        System.out.println(nfa.recognize("AABBAABBAAAAC"));
     }
 
-    public boolean regconize(String txt) {
+    public boolean recognize(String txt) {
         // all states that are reachable from first transition
         Bag<Integer> reachableState = getReachableState(new DirectedDFS(G, 0));
 
