@@ -18,13 +18,14 @@ public class NFA {
         NFA nfa = new NFA("(AA|BB)*C");
 
         System.out.println(nfa.recognize("AABBAABBAAAAC"));
+        System.out.println(nfa.recognize("CCAABBAAC"));
     }
 
     public boolean recognize(String txt) {
         // all states that are reachable from first transition
         Bag<Integer> reachableState = getReachableState(new DirectedDFS(G, 0));
 
-        for (int i = 0; i < txt.length(); i++) {
+        for (int i = 0; i < txt.length() && !reachableState.isEmpty(); i++) {
             Bag<Integer> match = new Bag<>();
 
             for (int v : reachableState) {
