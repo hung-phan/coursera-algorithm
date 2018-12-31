@@ -10,7 +10,7 @@ public class CircularSuffixArray {
         }
 
         length = s.length();
-        indices = new OffsetString[length()];
+        indices = new OffsetString[length];
 
         for (int i = 0, len = length(); i < len; i++) {
             indices[i] = new OffsetString(s, i);
@@ -35,7 +35,7 @@ public class CircularSuffixArray {
 
     // returns index of ith sorted suffix
     public int index(int i) {
-        if (0 < i || i >= indices.length) {
+        if (0 < i || i >= length) {
             throw new IndexOutOfBoundsException();
         }
 
