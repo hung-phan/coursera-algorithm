@@ -10,10 +10,12 @@ public class MoveToFront {
 
         while (!BinaryStdIn.isEmpty()) {
             int c = BinaryStdIn.readChar();
-            Pair<Node<Integer>, Integer> pair = alphabet.find(c, 0);
+            Pair<Node<Integer>, Integer> pair = alphabet.find(c);
 
-            alphabet.remove(pair.t);
-            alphabet = alphabet.addFirst(pair.t.value);
+            if (alphabet != pair.t) {
+                alphabet = alphabet.addFirst(pair.t.value);
+                alphabet.remove(pair.t);
+            }
 
             BinaryStdOut.write(pair.u, 8);
         }
@@ -27,12 +29,14 @@ public class MoveToFront {
 
         while (!BinaryStdIn.isEmpty()) {
             int index = BinaryStdIn.readChar();
-            Node<Integer> c = alphabet.get(index, 0);
+            Node<Integer> c = alphabet.get(index);
+
+            if (alphabet != c) {
+                alphabet = alphabet.addFirst(c.value);
+                alphabet.remove(c);
+            }
 
             BinaryStdOut.write(c.value, 8);
-
-            alphabet.remove(c);
-            alphabet = alphabet.addFirst(c.value);
         }
 
         BinaryStdOut.close();
@@ -96,39 +100,53 @@ public class MoveToFront {
         }
 
         private Node<E> addLast(E val) {
-            if (next != null) {
-                return next.addLast(val);
+            Node<E> runner = this;
+
+            while (runner.next != null) {
+                runner = runner.next;
             }
 
-            Node<E> newNode = new Node<>(val, this, null);
+            Node<E> last = new Node<>(val, runner, null);
 
-            next = newNode;
+            runner.next = last;
 
-            return newNode;
+            return last;
         }
 
-        private Node<E> get(int index, int offset) {
-            if (index == offset) {
-                return this;
-            }
-
-            if (next == null) {
+        private Node<E> get(int index) {
+            if (index < 0) {
                 throw new IndexOutOfBoundsException();
             }
 
-            return next.get(index, offset + 1);
-        }
+            Node<E> runner = this;
+            int currentIndex = 0;
 
-        private Pair<Node<E>, Integer> find(E val, int offset) {
-            if (value == val) {
-                return new Pair<>(this, offset);
+            while (runner != null && currentIndex != index) {
+                currentIndex++;
+                runner = runner.next;
             }
 
-            if (next == null) {
+            if (runner == null) {
+                throw new IndexOutOfBoundsException();
+            }
+
+            return runner;
+        }
+
+        private Pair<Node<E>, Integer> find(E val) {
+            Node<E> runner = this;
+            int currentIndex = 0;
+
+            while (runner != null && runner.value != val) {
+                currentIndex++;
+                runner = runner.next;
+            }
+
+            if (runner == null) {
                 throw new IllegalArgumentException(String.format("Cannot find character %s", val));
             }
 
-            return next.find(val, offset + 1);
+            return new Pair<>(runner, currentIndex);
         }
 
         private void remove(Node<E> node) {
@@ -146,6 +164,11 @@ public class MoveToFront {
             if (nextNode != null) {
                 nextNode.prev = prevNode;
             }
+        }
+
+        @Override
+        public String toString() {
+            return String.format("%s -> %s}", value, next);
         }
     }
 }

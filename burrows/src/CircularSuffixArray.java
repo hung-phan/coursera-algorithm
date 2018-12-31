@@ -35,6 +35,10 @@ public class CircularSuffixArray {
 
     // returns index of ith sorted suffix
     public int index(int i) {
+        if (0 < i || i >= indices.length) {
+            throw new IndexOutOfBoundsException();
+        }
+
         return indices[i].offset;
     }
 
