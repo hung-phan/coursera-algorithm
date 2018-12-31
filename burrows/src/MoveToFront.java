@@ -49,7 +49,6 @@ public class MoveToFront {
             throw new IllegalArgumentException("Invalid argument. Only accept 1 argument");
         }
 
-
         if ("-".equals(args[0])) {
             encode();
         } else if ("+".equals(args[0])) {
@@ -137,7 +136,7 @@ public class MoveToFront {
             Node<E> runner = this;
             int currentIndex = 0;
 
-            while (runner != null && runner.value != val) {
+            while (runner != null && runner.value.equals(val)) {
                 currentIndex++;
                 runner = runner.next;
             }
