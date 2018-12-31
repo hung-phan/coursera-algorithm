@@ -21,7 +21,9 @@ public class CircularSuffixArray {
 
     // unit testing (required)
     public static void main(String[] args) {
-        CircularSuffixArray csa = new CircularSuffixArray("ABRACADABRA!");
+        CircularSuffixArray csa = new CircularSuffixArray("EBNYXMAODP");
+
+        System.out.println(csa.length);
 
         for (OffsetString os : csa.indices) {
             System.out.println(os);
@@ -35,7 +37,7 @@ public class CircularSuffixArray {
 
     // returns index of ith sorted suffix
     public int index(int i) {
-        if (0 < i || i >= length) {
+        if (i < 0 || i >= length) {
             throw new IndexOutOfBoundsException();
         }
 
